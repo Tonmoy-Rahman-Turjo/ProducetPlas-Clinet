@@ -1,0 +1,16 @@
+
+@media (min-width:1px) and (max-width:790px){
+    .item{
+        display: none;
+    
+    }
+    .btns{
+        display: none;
+    
+    }
+}
+@media (min-width:770px) and (max-width:8000px){
+    .then{
+        display: none;
+    }
+}
