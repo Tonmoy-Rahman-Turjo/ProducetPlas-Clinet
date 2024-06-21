@@ -12,7 +12,7 @@ const UseProducts = () => {
     } = useQuery({
       queryKey: [" allProducts"],
       queryFn: async () => {
-        const res = await axiosPublic.get("/accPro");
+        const res = await axiosPublic.get("/productpage");
         return res.data;
       },
     });
