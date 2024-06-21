@@ -1,14 +1,21 @@
+
+
 import { useState } from "react";
-import UseAuth from "../UseHook/UseAuth";
+// import UseAuth from "../UseHook/UseAuth";
 // import UseAxios from "../UseHook/UseAxios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import UseAxios from "../UseHook/UseAxios";
 import { toast } from "react-toastify";
+// import Rating from "react-rating";
+import { FaStar } from "react-icons/fa";
+import UseAuth from "../UseHook/UseAuth";
+// import { AuthContext } from "../AuthProvider/Authprovider";
 
 
-const PostRivew = ({ productId }) => {
-    const { user } = UseAuth();
-    const { displayName, photoURL } = user;
+const PostRivew = ({productId}) => {
+    const{user} = UseAuth()
+    console.log(user)
+    const {displayName, photoURL} = user;
     const axiosSecure = UseAxios();
     const [rating, setRating] = useState(0);
     const queryClient = useQueryClient();
@@ -17,22 +24,18 @@ const PostRivew = ({ productId }) => {
       mutationFn: async (usersReview) =>
         await axiosSecure.post("/addReview", usersReview),
       onSuccess: () => {
-        queryClient.invalidateQueries("allReviews");
+        queryClient.invalidateQueries("allReviewse");
       },
     });
-  
+    // const [rating, setRating] = useState(0); // State to manage the rating value
+    const [hover, setHover] = useState(0);
     const handleAddProduct = async (event) => {
       event.preventDefault();
   
       const form = event.target;
       const feedback = form.feedback.value;
   
-      const usersReview = {
-        displayName,
-        photoURL,
-        feedback,
-        rating,
-        productId,
+      const usersReview = { displayName,photoURL,feedback,rating, productId,
       };
   
       try {
@@ -50,7 +53,7 @@ const PostRivew = ({ productId }) => {
       onSubmit={handleAddProduct}
       className="w-7/12 mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg"
     >
-      <h2 className="text-2xl font-bold mb-6">Feedback Form</h2>
+      <h2 className="text-3xl text-center text-red-600 underline font-bold mb-6">Feedback Form</h2>
       <div className="mb-8">
         <label className="block text-gray-700 font-bold mb-3" htmlFor="name">
           Name :
@@ -80,7 +83,35 @@ const PostRivew = ({ productId }) => {
         />
       </div>
       <div className="mb-6 mt-6">
-        <Rating value={rating} onChange={setRating} style={{ maxWidth: 230 }} />
+       
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', gap: '10px' }}>
+        {[...Array(5)].map((star, index) => {
+          const ratingValue = index + 1;
+
+          return (
+            <label key={index}>
+              <input
+                type="radio"
+                name="rating"
+                value={ratingValue}
+                onClick={() => setRating(ratingValue)}
+                style={{ display: 'none' }} 
+              />
+              <FaStar
+                className="star"
+                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                size={30}
+                onMouseEnter={() => setHover(ratingValue)}
+                onMouseLeave={() => setHover(0)}
+                style={{ cursor: 'pointer' }} 
+              />
+            </label>
+          );
+        })}
+      </div>
+      <p>The rating is {rating}.</p>
+    </div>
       </div>
       <div className="mb-4">
         <label

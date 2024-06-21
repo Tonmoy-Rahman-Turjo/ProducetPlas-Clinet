@@ -3,10 +3,12 @@ import Loader from "../../Route/Loader";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import UseAuth from "../../UseHook/UseAuth";
 import { useParams } from "react-router-dom";
-import { BiDownvote, BiUpvote } from "react-icons/bi";
+import { BiUpvote } from "react-icons/bi";
 import UseAxios from "../../UseHook/UseAxios";
+import PostRivew from "../PostRivew";
 // import Allrivew from "../AllRivew/Allrivew";
-// import Allrivew from "../AllRivew/Allrivew";
+
+import "@smastrom/react-rating/style.css";
 
 const Detels = () => {
     const axiosSecure = UseAxios();
@@ -121,91 +123,17 @@ const Detels = () => {
      <BiUpvote className="text-2xl"></BiUpvote>
       <span className="text-lg">{upVote}</span>
    </button>
-  
+   <ToastContainer />
  </div>
             
           </div>
           </div>
+          <PostRivew productId={_id} /> 
         </div>
+      
     );
 };
 
 
-
-
-
-
-
-
-
-
-
-// <div className=" bg-[#4aaad6] py-10">
-// <div className="flex rounded-xl w-7/12  m-auto  bg-white  shadow-lg mx-auto md:flex-row flex-col">
-// <div className="">
-//  <img src={productsImg} className="object-cover rounded-l-xl w-full h-full" />
-// </div>
-// <div className="p-6">
-//  <h6 className="block mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700">
-//    {Array.isArray(tags) &&
-//      tags?.map((tag, index) => (
-//        <span
-//          key={index}
-//          className="mr-2 mb-2 bg-green-100 text-green-600 py-1 px-2 rounded-full text-sm font-semibold"
-//        >
-//          {tag}
-//        </span>
-//      ))}
-//  </h6>
-//  <h4 className="block mb-6 mt-6 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-//    {productsName}
-//  </h4>
-//  <p className="block mb-3 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-//    {description}
-//  </p>
-//  <a
-//    href={
-//        externalLinks}
-//    target="_blank"
-//    rel="noopener noreferrer"
-//    className="block  antialiased font-medium text-blue-700 hover:underline leading-snug tracking-normal text-blue-gray-900"
-//  >
-//    {externalLinks}
-//  </a>
-//  <div className="mt-3">
-//    <button
-//      onClick={() => {
-//        if (voters?.includes(user?.email)) {
-//          toast.error("You've already voted this product");
-//        } else {
-//          handleVoteCount();
-//        }
-//      }}
-//      disabled={user?.email === email}
-//      className={`py-1 px-4 hover:text-black text-white bg-green-700 hover:scale-105 hover:shadow text-center border rounded-md border-gray-300 h-8 text-sm flex items-center gap-1 lg:gap-2 ${
-//        user?.email === email
-//          ? "cursor-not-allowed opacity-60 hover:text-black"
-//          : ""
-//      }`}
-//    >
-//      <BiUpvote className="text-2xl"></BiUpvote>
-//      <span className="text-lg">{upVote}</span>
-//    </button>
-  
-//  </div>
-// </div>
-// <div>
-// <button
-//    onClick={() => handleReportedProduct(_id)}
-//    className="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-xl px-6 italic py-1.5 m-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-//  >
-//    {ProductFeedback === "Reported" ? "Reported" : "Report"}
-//  </button>
-// </div>
-// </div>
-// <ToastContainer/>
-// {/* {/* <PostReview productId={_id} /> */}
-// {/* <Allrivew productId={_id} />  */}
-// </div>
 
 export default Detels;

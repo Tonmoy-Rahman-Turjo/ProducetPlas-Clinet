@@ -6,85 +6,24 @@ import Loader from "../../Route/Loader";
 import { toast } from "react-toastify";
 
 
-const Allrivew = () => {
-    const [products, loading, refetch] = HookProducts();
-    const axiosSecure = UseAxios();
-  
-    // getitem from sessionStorage
-    const initialDisabledButtons =
-      JSON.parse(sessionStorage.getItem("disabledButtons")) || {};
-    const [disabledButtons, setDisabledButtons] = useState(
-      initialDisabledButtons
-    );
-  
-    useEffect(() => {
-      sessionStorage.setItem("disabledButtons", JSON.stringify(disabledButtons));
-    }, [disabledButtons]);
-  
-    // Accepted product
-    const handleAcceptProduct = async (productId) => {
-      try {
-        await axiosSecure.put(`/acceptedProduct/${productId}`, {
-          status: "Accepted",
-        });
-        setDisabledButtons((prev) => ({ ...prev, [productId]: true }));
-        refetch();
-        console.log("Product accepted successfully");
-      } catch (error) {
-        console.error("Error accepting product:", error);
-      }
-    };
-  
-    // Rejected product
-    const handleRejectProduct = async (productId) => {
-      try {
-        await axiosSecure.put(`/rejectedProduct/${productId}`, {
-          status: "Rejected",
-        });
-        setDisabledButtons((prev) => ({ ...prev, [productId]: true }));
-        refetch();
-        console.log("Product rejected successfully");
-      } catch (error) {
-        console.error("Error rejecting product:", error);
-      }
-    };
-  
-    if (loading) {
-      return (
-        <div className="flex justify-center mt-8">
-          <Loader></Loader>
-        </div>
+const Allrivew = ({productId}) => {
+  const axiosSecure = useAxiosSecure();
+  const { data } = useQuery({
+    queryKey: ["allReviews"],
+    queryFn: async () => await axiosSecure.get("/allReviews"),
+  });
+
+  const [productReviews, setProductReviews] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      const allReviews = data.data;
+      const reviewsProduct = allReviews.filter(
+        (review) => review.productId === productId
       );
+      setProductReviews(reviewsProduct);
     }
-  
-    // Featured products
-    const handleFeaturedProduct = async (productId) => {
-      try {
-        await axiosSecure.put(`/productType/${productId}`, {
-          status: "Featured",
-        });
-        refetch();
-        console.log("Product Type change successfully");
-        toast.success("Successfully mark as Featured");
-      } catch (error) {
-        console.error("Error Type updating product:", error);
-      }
-    };
-  
-    // Sort products based on ProductStatus
-    const sortedProducts = [...products].sort((a, b) => {
-      if (a.ProductStatus === "Pending") {
-        return -1; // Move 'a' before 'b' if 'a' is "Pending"
-      }
-      if (a.ProductStatus === "Accepted" && b.ProductStatus === "Rejected") {
-        return -1; // Move 'a' before 'b' if 'a' is "Accepted" and 'b' is "Rejected"
-      }
-      if (a.ProductStatus === "Rejected" && b.ProductStatus !== "Rejected") {
-        return 1; // Move 'b' before 'a' if 'a' is "Rejected" and 'b' is not "Rejected"
-      }
-      return 0; // Keep the order unchanged otherwise
-    });
-  
+  }, [data, productId]);
     return (
         <div>
               {/* component */}
