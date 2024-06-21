@@ -7,9 +7,11 @@ import { FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import UseAuth from "../UseHook/UseAuth";
+import UseAxios from "../UseHook/UseAxios";
 const Register = () => {
-  const {creatUser} = UseAuth()
-  console.log(creatUser)
+  const axiospublic = UseAxios()
+  const {creatUser, updateuserProfile} = UseAuth()
+  // console.log(creatUser)
     const [success, setSuccess] = useState('')
     const location = useLocation()
     const navigate = useNavigate()
@@ -22,11 +24,11 @@ const Register = () => {
         setSuccess('')
           event.preventDefault()
           const form = event.target;
-           const name = form.name.value;
+           const displayName = form.displayName.value;
            const email = form.email.value;
            const password = form.password.value;
-           const photoUrl = form.photoUrl.value;
-           const register={name, email, password, photoUrl}
+           const photoURL = form.photoURL.value;
+           const register={displayName, email, password, photoURL}
            console.log(register)
     
            if(password.length <6 ){
@@ -37,9 +39,23 @@ const Register = () => {
         creatUser(email, password)
            
            .then(result =>{
-                 setSuccess(toast("Wow Complite your Registion Successfully!"))
-                 navigate(forms)
-            console.log('mama akta user paiya gase', result)
+            updateuserProfile(displayName, photoURL)
+              .then(res=>{
+                console.log(res.data)
+              })
+              .catch(error =>{
+                console.log(error)
+              })
+             axiospublic.post('/user', register)
+             .then(res=>{
+              
+              if(res.data.insertedId){
+
+                setSuccess(toast("Wow Complite your Registion Successfully!"))
+                navigate(forms)
+           console.log('mama akta user paiya gase', result)
+              }
+             })
            })
            .catch(error =>{
             console.error(error.message)
@@ -61,7 +77,7 @@ const Register = () => {
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input type="name"  placeholder="Please Type Your Name" name="name" className="input input-bordered " required />
+          <input type="text"  placeholder="Please Type Your Name" name="displayName" className="input input-bordered " required />
         </div>
         <div className="form-control">
           <label className="label">
@@ -85,7 +101,7 @@ const Register = () => {
           <label className="label">
             <span className="label-text">Photo URL</span>
           </label>
-          <input type="name"  placeholder="Please Type Your Proto URL" name="photoUrl" className="input input-bordered " required />
+          <input type="url"  placeholder="Please Type Your Proto URL" name="photoURL" className="input input-bordered " required />
         </div>
         </div>
         <div>

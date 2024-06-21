@@ -10,6 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react';
 import imgs from '../assets/Computer login.gif'
 import UseAuth from '../UseHook/UseAuth';
+import UseAxios from '../UseHook/UseAxios';
 const Login = () => {
     const [success, setSuccess] = useState('')
     const [error, setError]= useState('')
@@ -18,6 +19,7 @@ const Login = () => {
     const navigate = useNavigate()
     const forms = location.state || '/'
     const{googleLogin} = UseAuth()
+    const axioxpublics = UseAxios()
     // const [showpassword, setShowpassword] = useState(false)
     const googleLogins = event =>{
       event()
@@ -28,6 +30,26 @@ const Login = () => {
       .then(result =>{
          console.log(result)
          navigate(forms)
+         console.log(result)
+          navigate(forms)
+          const singuser={
+           email: result.user?.email,
+           displayName: result.user?.displayName
+ 
+         }
+          axioxpublics.post('/user', singuser)
+          .then(res =>{
+          
+           console.log(res.data)
+          })
+      
+
+         
+          
+
+
+
+
        })
        .catch(error =>
         // console.error(error)
@@ -54,7 +76,7 @@ const Login = () => {
           .catch(error=>{
             setError(error.message)
           })
-        // const [showpassowrd, setpassword] = useState(false)
+    
       }
       const [showpassowrd, setpassword] = useState(false)
     return (

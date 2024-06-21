@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { IoMdMenu } from "react-icons/io";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
@@ -8,9 +8,10 @@ import UseAuth from "../../UseHook/UseAuth";
 import './nav.css'
 const Nav = () => {
     const [open, setOpen] = useState(false)
-    // const { user, logOut } = UseAuth()
-    // const [open, setOpen] = useState(false)
-    const { user, signOut } = UseAuth()
+    
+    const navigate = useNavigate()
+    const { user, signOute } = UseAuth()
+    // console.log(user)
     const [theme, setTheme] = useState('light')
     useEffect(() => {
         localStorage.setItem('theme', theme)
@@ -19,7 +20,7 @@ const Nav = () => {
     }, [theme])
 
     const handeltogol = (e) => {
-        //   console.log(e.target.checked)
+        
         if (e.target.checked) {
             setTheme('night')
         }
@@ -28,11 +29,16 @@ const Nav = () => {
         }
 
     }
+    const handleLogout = () => {
+        signOute().then(() => {
+           navigate('/login');
+        });
+    };
     return (
         <div>
             <div className="flex  shadow-lg shadow-[#353333d2]  z-50  py-3 my5 bg-[#17181846] bg-gradient-to-r from-[#0c0b0bc5] to-[#07070756] justify-around items-center">
                 <div className="flex  items-center gap-2">
-                    {/* <img className="w-10 h-10 m-auto rounded-full" src={logo} alt="" /> */}
+                   
                     <h2 className="lg:text-3xl text-base font-extrabold italic bg-gradient-to-r from-[#0c1bf0] to-[#42dbba] bg-clip-text text-transparent briemhand ">ProductPulse</h2>
                 </div>
                 {/* scend */}
@@ -93,9 +99,9 @@ const Nav = () => {
                                         <div className=" w-10 ">
 
                                                 {
-                                                    user ? <img className="w-10 rounded-full" src={user.photoURL} alt="" />
+                                                    user ? <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
                                                         :
-                                                        <p className="bg-red-700 w-24 h-24 rounded-full"></p>
+                                                        <p className=" w-24 h-24 rounded-full"></p>
                                                 }
                                             
                                             <Tooltip id="my-tooltip" />
@@ -105,9 +111,9 @@ const Nav = () => {
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li>{user.displyName}</li>
+                                    <li>{user?.displayName}</li>
                                     <li><NavLink to="deshbord"><button className="text-center font-bold" >Desh Bord</button></NavLink></li>
-                                    <li><button className="text-center font-bold" onClick={signOut} >logOut</button></li>
+                                    <li><button className="text-center font-bold" onClick={()=>handleLogout()} >logOut</button></li>
                                 </ul>
 
                             </div>

@@ -34,13 +34,13 @@ const AddProducts = () => {
     const productsName = form.productsName.value;
     const productsImg = form.productsImg.value;
     const description = form.descriptions.value;
-    const ownerName = form.ownerName.value;
+    const displayName = user.displayName;
     const ownerEmail = form.ownerEmail.value;
-    const ownerImg = form.ownerImg.value;
+    const photoURL = user.photoURL;
     const externalLinks = form.externalLinks.value;
     const email =user.email;
 
-    const addProducts = { productsName, productsImg, description, ownerName, ownerEmail, ownerImg, externalLinks, tags: tagsList, timestamp: timestamp, email, 
+    const addProducts = { productsName, productsImg, description, displayName, ownerEmail, photoURL, externalLinks, tags: tagsList, timestamp: timestamp, email, 
     };
 
     console.log(addProducts);
@@ -93,20 +93,20 @@ const AddProducts = () => {
                 <label className="label">
                   <span className="label-text">Owner Name*</span>
                 </label>
-                <input type="text" name="ownerName" defaultValue={user.displayName
+                <input type="text" name="ownerName" defaultValue={user?.displayName
 } placeholder="Owner Name" className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Owner IMG*</span>
                 </label>
-                <input type="url" name="ownerImg" defaultValue={user.photoURL} placeholder="Owner img url" className="input input-bordered" required />
+                <input type="url" name="ownerImg" defaultValue={user?.photoURL} placeholder="Owner img url" className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Owner Email*</span>
                 </label>
-                <input type="email" name="ownerEmail" defaultValue={user.email} placeholder="Owner Email" className="input input-bordered" required />
+                <input type="email" name="ownerEmail" defaultValue={user?.email} placeholder="Owner Email" className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <div className='w-full '>
