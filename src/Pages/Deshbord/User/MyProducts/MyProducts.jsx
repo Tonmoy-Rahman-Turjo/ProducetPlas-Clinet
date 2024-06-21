@@ -90,7 +90,31 @@ const handleDelete = (id) => {
                             <tr key={item._id} className="text-center">
                                 <td className="py-3 px-4 whitespace-nowrap">{item.productsName}</td>
                                 <td className="py-3 px-4">{/* Vote */}</td>
-                                <td className="py-3 px-4">{/* Status */}</td>
+                                <td className="py-3 px-4">{/* Status */}
+                                {/* <span
+                  className={`px-3 text-center py-1 text-base font-semibold inline-flex leading-5 rounded-3xl ${
+                    item.ProductStatus === "Accepted"
+                      ? "bg-green-300 text-slate-700"
+                      : item.ProductStatus === "Pending"
+                      ? "bg-slate-200 text-slate-700"
+                      : "bg-red-300 text-slate-700"
+                  }`}
+                >
+                
+                  {item.ProductStatus}
+                </span> */}<div
+  className={`px-3 text-center py-1 text-base font-semibold inline-flex leading-5 rounded-3xl ${
+    item.ProductStatus === "Accepted"
+      ? "bg-green-300 text-slate-700"
+      : item.ProductStatus === "Rejected"
+      ? "bg-red-300 text-slate-700"
+      : "bg-slate-200 text-slate-700" // Default to Pending
+  }`}
+>
+  {item.ProductStatus || "Pending"}
+</div>
+
+                                </td>
                                 <td className="py-3 px-4">
                                     <Link to={`/deshbord/myproduct/update/${item._id}`}>
                                         <button className="btn btn-success">Update</button>

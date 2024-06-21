@@ -20,6 +20,9 @@ import ErrorDshabord from "../Pages/ErrorDshabord";
 import Payment from "../Pages/Deshbord/Payment/Payment";
 import ProductRivew from "../Pages/Deshbord/ProductRivew/ProductRivew";
 import RepotsContent from "../Pages/Deshbord/RiporteContes/RepotsContent";
+import Detels from "../Shared/Detels/Detels";
+import Allrivew from "../Shared/AllRivew/Allrivew";
+// import PrivetRoute from "../PrivetRoute/PrivetRoute";
 // import AdminRoute from "./AdminRoute";
 // import MyProfile from "../Pages/Deshbord/MyProfile/MyProfile";
 
@@ -53,6 +56,11 @@ export  const router = createBrowserRouter([
             path: "/register",
             element: <Register></Register>
         }
+        ,
+        {
+            path: "/detels/:id",
+            element: <Detels></Detels>
+        }
     ]
 },
 {
@@ -82,7 +90,11 @@ export  const router = createBrowserRouter([
             element: <Update></Update>
         },
         // modaretor-deshbord
-        
+        {
+            path: '/deshbord/allrivew:id',
+            element: <Allrivew></Allrivew>
+        },
+
         {
             path: '/deshbord/repotedcontens',
             element: <RepotsContent></RepotsContent>

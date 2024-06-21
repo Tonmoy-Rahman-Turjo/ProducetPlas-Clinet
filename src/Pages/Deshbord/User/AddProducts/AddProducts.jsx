@@ -1,6 +1,6 @@
 
 
-import  { useState } from 'react';
+import { useState } from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
 import useAxiosHook from '../../../../UseHook/UseAxiosHook';
 import Swal from 'sweetalert2';
@@ -9,7 +9,7 @@ import UseAuth from '../../../../UseHook/UseAuth';
 // import useAxiosHook from './useAxiosHook'; // Update the path as necessary
 
 const AddProducts = () => {
-  const{user}=UseAuth()
+  const { user } = UseAuth()
   const location = useLocation()
   const navigate = useNavigate()
   const forms = location.state || '/deshbord/myproducts'
@@ -22,9 +22,11 @@ const AddProducts = () => {
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
-
+ 
   const handleAddition = (tag) => {
-    setTags([...tags, tag]);
+
+    const formattedTag = { id: tag.id, text: `#${tag.text}` };
+    setTags([...tags, formattedTag]);
   };
 
   const handleAddProducts = (event) => {
@@ -38,9 +40,10 @@ const AddProducts = () => {
     const ownerEmail = form.ownerEmail.value;
     const photoURL = user.photoURL;
     const externalLinks = form.externalLinks.value;
-    const email =user.email;
+    const email = user.email;
 
-    const addProducts = { productsName, productsImg, description, displayName, ownerEmail, photoURL, externalLinks, tags: tagsList, timestamp: timestamp, email, 
+    const addProducts = {
+      productsName, productsImg, description, displayName, ownerEmail, photoURL, externalLinks, tags: tagsList, timestamp: timestamp, email,
     };
 
     console.log(addProducts);
@@ -55,7 +58,7 @@ const AddProducts = () => {
             showConfirmButton: false,
             timer: 1500
           });
-           navigate(forms)
+          navigate(forms)
         }
         console.log(response.data);
       })
@@ -94,7 +97,7 @@ const AddProducts = () => {
                   <span className="label-text">Owner Name*</span>
                 </label>
                 <input type="text" name="ownerName" defaultValue={user?.displayName
-} placeholder="Owner Name" className="input input-bordered" required />
+                } placeholder="Owner Name" className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <label className="label">
@@ -109,9 +112,10 @@ const AddProducts = () => {
                 <input type="email" name="ownerEmail" defaultValue={user?.email} placeholder="Owner Email" className="input input-bordered" required />
               </div>
               <div className="form-control">
-                <div className='w-full '>
+
+                <div className='w-full border border-black p-2'>
                   <ReactTags
-                    tags={tags}
+                    tags={tags.length ? tags : [{ id: "Pending", text: "#add your tag" }]}
                     handleDelete={handleDelete}
                     handleAddition={handleAddition}
                     inputFieldPosition="inline"
@@ -124,7 +128,7 @@ const AddProducts = () => {
                 <label className="label">
                   <span className="label-text">External Links</span>
                 </label>
-                <input type="url" name="externalLinks" placeholder="Type your External Links" className="input input-bordered"  />
+                <input type="url" name="externalLinks" placeholder="Type your External Links" className="input input-bordered" />
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Add Product</button>
