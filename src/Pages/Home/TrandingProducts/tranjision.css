@@ -1,0 +1,9 @@
+.tr {
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Adding transform to the transition */
+  }
+  
+  .tr:hover {
+    background-color: red;
+    transform: scale(1.1); /* Example transform: scale up by 10% */
+    transition-delay: 1s; /* Delay of 1 second before the background-color and transform changes */
+  }

@@ -1,4 +1,4 @@
-import { BiDownvote, BiUpvote } from "react-icons/bi";
+import {BiUpvote } from "react-icons/bi";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "../../../Route/Loader";
@@ -8,7 +8,7 @@ import UseAuth from "../../../UseHook/UseAuth";
 import UseAxios from "../../../UseHook/UseAxios";
 import useAxiosHook from "../../../UseHook/UseAxiosHook";
 
-
+import './tranjision.css'
 const TrandingProducts = () => {
     const axiosPublic = useAxiosHook();
     const axiosSecure = UseAxios();
@@ -19,7 +19,7 @@ const TrandingProducts = () => {
     // eslint-disable-next-line no-unused-vars
     const [filter, setfilters] = useState("desc");
     const { data, isLoading, refetch } = useQuery({
-      queryKey: ["trendingProducts"],
+      queryKey: ["userVotetrendingProducts"],
       queryFn: async () =>
         await axiosPublic.get(`/trendingProducts/?upVote=${filter}`),
     });
@@ -66,13 +66,20 @@ const TrandingProducts = () => {
           </div>
       <div className="grid gap-10 delay-75 tranzision w-full h-full lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {allTrendingProduct?.slice(0, 6).map((trending) => (
-          <div key={trending._id} data-aos="fade-up" className="rounded hover:bg-[#fff]  shadow-2xl shadow-[#5fbec5] bg-[#43c6ca] p-3">
+          <div key={trending._id} data-aos="fade-up" className="rounded group-hover:opacity-100 tr shadow-2xl shadow-[#5fbec5] bg-[#43c6ca] p-4">
             <img
-              className="w-full h-64"
+              className="w-full rounded h-64"
               src={trending.productsImg}
               alt=""
             />
-            <div className="flex justify-end mt-3 mr-4 gap-5">
+            <div className="flex justify-between  items-center gap-5">
+            <div className="my-3">
+              <NavLink to={`/detels/${trending._id}`}>
+                <div className="font-bold hover:underline text-2xl mb-1">
+                  {trending.productsName}
+                </div>
+              </NavLink>
+            </div>
               <button
                 onClick={() => {
                   if (trending.voters?.includes(user?.email)) {
@@ -82,7 +89,7 @@ const TrandingProducts = () => {
                   }
                 }}
                 disabled={user?.email === trending?.email}
-                className={`py-1 px-4 hover:text-green-600 hover:scale-105 hover:shadow text-center border rounded-md border-gray-300 h-8 text-sm flex items-center gap-1 lg:gap-2 ${
+                className={`py-1 px-4 hover:bg-black bg-green-800 text-white font-semibold  hover:scale-105 hover:shadow text-center border rounded-md border-gray-300 h-8 text-sm flex items-center gap-1 lg:gap-2 ${
                   user?.email === trending?.email
                     ? "cursor-not-allowed opacity-60 hover:text-black"
                     : ""
@@ -91,24 +98,15 @@ const TrandingProducts = () => {
                 <BiUpvote className="text-xl"></BiUpvote>
                 <span className="text-lg">{trending.upVote || 0}</span>
               </button>
-              <button className="py-1 px-4 hover:text-red-600 hover:scale-105 hover:shadow text-center border border-gray-300 rounded-md h-8 text-sm flex items-center gap-1 lg:gap-2">
-                <BiDownvote className="hover:text-red-600 text-xl"></BiDownvote>
-                <span className="text-lg">0</span>
-              </button>
+            
             </div>
-            <div className="px-6 py-4">
-              <NavLink to={`/detels/${trending._id}`}>
-                <div className="font-bold hover:underline text-2xl mb-1">
-                  {trending.productsName}
-                </div>
-              </NavLink>
-            </div>
+           
             <div className="px-6 pb-6 flex flex-wrap gap-3">
               {Array.isArray(trending?.tags) &&
                 trending?.tags?.map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-block bg-green-200 rounded-full px-3 py-1 text-base font-semibold text-green-900  mr-2"
+                    className="inline-block bg-green-200 rounded-2xl px-3 py-1 text-base font-semibold text-green-900  "
                   >
                     {tag}
                   </span>
