@@ -1,6 +1,6 @@
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import Loader from "../../../Route/Loader";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -40,12 +40,12 @@ const TrandingProducts = () => {
       try {
         await voteIncrsements({ id: product._id, userEmail: user.email });
         refetch();
-        toast("Woww! Vote done", {
+        toast(" count your vote successfully ", {
           icon: "👏",
         });
       } catch (error) {
-        // toast.error(error.response?.data?.message || "Error voting for product");
-        console.log(error || "Error voting for product");
+       
+        // console.log(error);
       }
     };
   
@@ -57,14 +57,16 @@ const TrandingProducts = () => {
       );
     }
     return (
-        <div>
-             <div className="w-11/12 mx-auto mt-36 mb-24">
-      <h1 className="text-3xl text-center mb-10 font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-        🎉 Trending Products
-      </h1>
-      <div className="grid gap-24 w-full h-full lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+        <div className="bg-[#70e9cf60]">
+             <div className="w-11/12 mx-auto py-20 ">
+      
+      <div data-aos="fade-down">
+          <h1 className="text-xl text-center pt-20  font-semibold  text-white capitalize md:text-4xl "> 😍 <span className="italic">Trending Products </span></h1>
+          <p className=" text-xl text-[#4948489a] pb-14 pt-3 md:w-1/3  w-full italic m-auto text-center">This description quickly conveys the key features and benefits of the product in a succinct manner, enticing potential customers with its capabilities</p>
+          </div>
+      <div className="grid gap-10 delay-75 tranzision w-full h-full lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {allTrendingProduct?.slice(0, 6).map((trending) => (
-          <div key={trending._id} className="rounded overflow-hidden shadow-lg">
+          <div key={trending._id} data-aos="fade-up" className="rounded hover:bg-[#fff]  shadow-2xl shadow-[#5fbec5] bg-[#43c6ca] p-3">
             <img
               className="w-full h-64"
               src={trending.productsImg}
@@ -95,9 +97,9 @@ const TrandingProducts = () => {
               </button>
             </div>
             <div className="px-6 py-4">
-              <NavLink to={`/details/${trending._id}`}>
+              <NavLink to={`/detels/${trending._id}`}>
                 <div className="font-bold hover:underline text-2xl mb-1">
-                  {trending.productName}
+                  {trending.productsName}
                 </div>
               </NavLink>
             </div>
@@ -106,7 +108,7 @@ const TrandingProducts = () => {
                 trending?.tags?.map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-block bg-gray-100 rounded-full px-3 py-1 text-base font-semibold text-green-600  mr-2"
+                    className="inline-block bg-green-200 rounded-full px-3 py-1 text-base font-semibold text-green-900  mr-2"
                   >
                     {tag}
                   </span>
@@ -125,6 +127,7 @@ const TrandingProducts = () => {
           </button>
         </NavLink>
       </div>
+      <ToastContainer />
     </div>
         </div>
     );
