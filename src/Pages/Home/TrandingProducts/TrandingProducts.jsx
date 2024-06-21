@@ -66,7 +66,7 @@ const TrandingProducts = () => {
           </div>
       <div className="grid gap-10 delay-75 tranzision w-full h-full lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {allTrendingProduct?.slice(0, 6).map((trending) => (
-          <div key={trending._id} data-aos="fade-up" className="rounded map-card shadow-2xl  cursor-pointer duration-1000 hover:bg-[#4ff3f3] hover:relative top-7 shadow-[#5fbec5] p-4">
+          <div key={trending._id} data-aos="fade-up" className="rounded map-card shadow-2xl   cursor-pointer duration-1000 hover:bg-[#4ff3f3] hover:relative top-7 shadow-[#5fbec5] p-4">
             <img
               className="w-full rounded h-64"
               src={trending.productsImg}

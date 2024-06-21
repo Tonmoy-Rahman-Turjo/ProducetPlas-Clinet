@@ -13,7 +13,9 @@ const UseProducts = () => {
       queryKey: [" allProducts"],
       queryFn: async () => {
         const res = await axiosPublic.get("/productpage");
+        console.log(res.data)
         return res.data;
+       
       },
     });
   
