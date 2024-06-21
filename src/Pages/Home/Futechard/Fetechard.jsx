@@ -50,9 +50,11 @@ const Fetechardse = () => {
     return (
         <section className="bg-[#adecee]">
         <div className="w-11/12 pb-20 m-auto">
+          <div data-aos="fade-down">
           <h1 className="text-xl text-center pt-10  font-semibold italic text-white capitalize md:text-4xl "> 🚀 Featured Products </h1>
           <p className=" text-xl text-[#494848] pb-14 pt-3 md:w-1/3  w-full italic m-auto text-center">Ideal design and usability for users.
           Gune means more and these products have good reviews</p>
+          </div>
           <div className="grid grid-cols-1  gap-8 md:grid-cols-2 2xl:grid-cols-3 ">
             {allFeaturedProduct?.slice(0, 6).map((featured) => (
               <div key={featured._id} data-aos="fade-up"  className="lg:flex md:w-[500px] m-auto w-full  justify-center border py-3 bg-[#fff] rounded-lg shadow-2xl  shadow-[#7a7979]">

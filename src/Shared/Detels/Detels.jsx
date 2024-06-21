@@ -9,6 +9,7 @@ import PostRivew from "../PostRivew";
 // import Allrivew from "../AllRivew/Allrivew";
 
 import "@smastrom/react-rating/style.css";
+import Allrivew from "../AllRivew/Allrivew";
 
 const Detels = () => {
     const axiosSecure = UseAxios();
@@ -128,6 +129,7 @@ const Detels = () => {
             
           </div>
           </div>
+            <Allrivew productId={_id} />
           <PostRivew productId={_id} /> 
         </div>
       
