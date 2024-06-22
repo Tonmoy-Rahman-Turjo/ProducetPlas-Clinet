@@ -249,6 +249,29 @@
 // };
 
 // export default Products;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { useEffect, useState } from "react";
 import { BiUpvote } from "react-icons/bi";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -258,7 +281,7 @@ import UseAuth from "../../UseHook/UseAuth";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosHook from "../../UseHook/UseAxiosHook";
 import UseProducts from "../../UseHook/UseProducts";
-
+import { IoSearch } from "react-icons/io5";
 const Products = () => {
   const [acceptedProducts, refetch] = UseProducts();
   const [currentPage, setCurrentPage] = useState(1);
@@ -301,7 +324,7 @@ const Products = () => {
     // Function to fetch accepted products from backend
     const fetchAcceptedProducts = async () => {
       try {
-        const response = await axios.get("/productpage");
+        const response = await axios.get("/api/products");
         setAcceptedProducts(response.data);
         setFilteredProducts(response.data); // Initialize filtered products with all accepted products
       } catch (error) {
@@ -317,8 +340,8 @@ const Products = () => {
     setSearchTerm(searchTerm);
 
     try {
-      const response = await axios.get(`/products/search?keyword=${searchTerm}`);
-      setFilteredProducts(response.data); // Update filtered products based on search result from backend
+      const response = await axios.get(`/api/products/search?keyword=${searchTerm}`);
+      setFilteredProducts(response.data); 
     } catch (error) {
       console.error("Error searching products:", error);
     }
@@ -335,8 +358,8 @@ const Products = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <button className="w-full md:w-auto px-6 py-3 bg-black border-black text-white fill-white active:scale-95 duration-100 border will-change-transform overflow-hidden relative rounded-xl transition-all disabled:opacity-70">
-          {/* Search Icon */}
+        <button className="w-full flex gap-1  items-center  md:w-auto text-2xl p-2 bg-black border-black text-white fill-white active:scale-95 duration-100 border will-change-transform overflow-hidden relative rounded-xl transition-all disabled:opacity-70">
+         search <IoSearch />
         </button>
       </label>
 
@@ -353,7 +376,7 @@ const Products = () => {
                     </span>
                   ))}
               </div>
-              <NavLink to={`/details/${product._id}`}>
+              <NavLink to={`/detels/${product._id}`}>
                 <p className="text-2xl mt-1 hover:underline font-bold text-black">
                   {product.productsName}
                 </p>
