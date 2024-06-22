@@ -118,8 +118,8 @@ const TrandingProducts = () => {
       <div className="flex mt-10 justify-center items-center">
         <NavLink to="/products">
           
-          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-2xl font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-            <span className="relative px-16 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          <button className=" bg-[#30c6d1] p-2 rounded hover:bg-red-700 text-2xl font-bold">
+            <span className="p-2 hover:text-white">
               Show All Products
             </span>
           </button>

@@ -22,6 +22,10 @@ import ProductRivew from "../Pages/Deshbord/ProductRivew/ProductRivew";
 import RepotsContent from "../Pages/Deshbord/RiporteContes/RepotsContent";
 import Detels from "../Shared/Detels/Detels";
 import Allrivew from "../Shared/AllRivew/Allrivew";
+import StaticPgae from "../Pages/Deshbord/Staticpage.jsx/StaticPgae";
+import Managcopun from "./Managcopun";
+import EditCoupon from "../UseHook/editcopon";
+// import Updatecopon from "../UseHook/Updatecopon";
 // import PrivetRoute from "../PrivetRoute/PrivetRoute";
 // import AdminRoute from "./AdminRoute";
 // import MyProfile from "../Pages/Deshbord/MyProfile/MyProfile";
@@ -89,6 +93,22 @@ export  const router = createBrowserRouter([
             path: '/deshbord/myproduct/update/:id',
             element: <Update></Update>
         },
+        {
+            path: '/deshbord/staticpage',
+            element: <StaticPgae></StaticPgae>
+
+        },
+        {
+            path: '/deshbord/managcopun',
+           element: <Managcopun></Managcopun>
+
+        },
+        {
+            path: '/deshbord/editcoupon/:id',
+            element: <EditCoupon></EditCoupon>
+
+        },
+        
         // modaretor-deshbord
         {
             path: '/deshbord/allrivew:id',

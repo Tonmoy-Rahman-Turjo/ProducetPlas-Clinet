@@ -43,7 +43,8 @@ const User = () => {
         console.error('Error promoting user to admin', error);
       });
   };
-    const handlModaretor = (user) => {
+
+ const handlModaretor = (user) => {
    axiosSecure.patch(`/alluser/moderator/${user._id}`)
     .then((res) => {
       console.log(res.data);

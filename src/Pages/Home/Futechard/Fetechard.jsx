@@ -38,12 +38,10 @@ const Fetechardse = () => {
     try {
       await voteIncrement({ id: product._id, userEmail: user.email });
       refetch();
-      toast("Count your vote successfully", {
-        icon: "😍", 
-      });
+      toast("Count your vote successfully");
     } catch (error) {
       
-      console.log(error || "Error voting for product");
+      // console.log(error ");
     }
   };
 
@@ -57,7 +55,7 @@ const Fetechardse = () => {
           </div>
           <div className="grid grid-cols-1  gap-8 md:grid-cols-2 2xl:grid-cols-3 ">
             {allFeaturedProduct?.slice(0, 6).map((featured) => (
-              <div key={featured._id} data-aos="fade-up"  className="lg:flex md:w-[500px] m-auto w-full  justify-center border py-3 bg-[#fff] rounded-lg shadow-2xl  shadow-[#7a7979]">
+              <div key={featured._id} data-aos="fade-up"  className="lg:flex md:w-[500px] m-auto w-full  justify-center border py-3 bg-[#fff]   hover:bg-red-500 p-2 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl shadow-[#7a7979]">
                 <img
                   className="object-cover w-full h-56 rounded-lg lg:w-64"
                   src={featured.productsImg}alt=""
@@ -108,8 +106,9 @@ const Fetechardse = () => {
               </div>
             ))}
           </div>
+          <ToastContainer />
         </div>
-        <ToastContainer />
+      
       </section>
     );
 };

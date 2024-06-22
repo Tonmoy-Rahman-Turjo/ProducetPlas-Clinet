@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import UseAuth from "./UseAuth";
 import UseAxios from "./UseAxios";
+import UseAuth from "./UseAuth";
+
+
 
 
 const Modaretor = () => {
@@ -12,11 +14,15 @@ const Modaretor = () => {
   
     queryFn: async () => {
         const res = await aixioxmodaretor.get(`/alluser/moderator/${user.email}`)
-      // console.log(res.data);
+      console.log(res.data);
       return res.data?.moderator;
     },
   });
   return [isModerator, isModeratorLoading];
+
+
+
+
   
 };
 

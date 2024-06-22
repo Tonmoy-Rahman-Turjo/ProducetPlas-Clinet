@@ -73,7 +73,7 @@ const Banar = () => {
             </p>
            </div>
            </div> */}
- <img className='md:h-96' src="https://i.postimg.cc/pVBkbHcD/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment.jpg" alt="" />
+ <img className='md:h-96 h-full cover w-full' src="https://i.postimg.cc/pVBkbHcD/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment.jpg" alt="" />
        </SwiperSlide>
       
      

@@ -31,8 +31,8 @@ const Deshbord = () => {
               {
                 isAdmin?( <>
                          <NavLink className={({isActive}) => isActive ? " text-red w-full bg-[#3bc44d]   rounded font-semibold my-2  md:text-2xl text-base text-center" : "text-[#5c5656] bg-[#fff] rounded font-semibold my-2  md:text-2xl text-base text-center" } to="/deshbord/user">User</NavLink>
-                         <NavLink className={({isActive}) => isActive ? " text-red w-full bg-[#3bc44d]  rounded font-semibold my-2  md:text-2xl text-base text-center" : "text-[#5c5656] bg-[#fff] rounded font-semibold my-2  md:text-2xl text-base text-center" } to="/deshbord/user">Statistics Page.</NavLink>
-                         <NavLink className={({isActive}) => isActive ? " text-red w-full bg-[#3bc44d]  rounded font-semibold my-2  md:text-2xl text-base text-center" : "text-[#5c5656] bg-[#fff] rounded font-semibold my-2  md:text-2xl text-base text-center" } to="/deshbord/user">Manage Coupons. </NavLink>
+                         <NavLink className={({isActive}) => isActive ? " text-red w-full bg-[#3bc44d]  rounded font-semibold my-2  md:text-2xl text-base text-center" : "text-[#5c5656] bg-[#fff] rounded font-semibold my-2  md:text-2xl text-base text-center" } to="/deshbord/staticpage">Statistics Page.</NavLink>
+                         <NavLink className={({isActive}) => isActive ? " text-red w-full bg-[#3bc44d]  rounded font-semibold my-2  md:text-2xl text-base text-center" : "text-[#5c5656] bg-[#fff] rounded font-semibold my-2  md:text-2xl text-base text-center" } to="/deshbord/managcopun">Manage Coupons. </NavLink>
                 </>):isModerator ? (
                 <>
                  <NavLink className={({isActive}) => isActive ? " text-red w-full bg-[#3bc44d]  rounded font-semibold my-2  md:text-2xl text-base text-center" : "text-[#5c5656] bg-[#fff] rounded font-semibold my-2  md:text-2xl text-base text-center" } to="/deshbord/productrivew"> Review Products </NavLink>
