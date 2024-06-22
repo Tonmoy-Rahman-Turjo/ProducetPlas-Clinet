@@ -38,9 +38,9 @@ const EditCoupon = () => {
   
         const updatedCou = {
             Code:form.Code.value,
-            expireDates: form.expireDate.value,
+            expireDates: form.expireDates.value,
             description: form.description.value,
-            disountamount: form.amount.value,
+            disountamount: form.disountamount.value,
         };
   
         try {
@@ -101,7 +101,7 @@ const EditCoupon = () => {
                             <div className="mt-1 relative rounded-md shadow-sm">
                                 <input
                                     id="expireDate"
-                                    name="expireDate"
+                                    name="expireDates"
                                     placeholder="Enter Expire Date"
                                     defaultValue={expireDates}
                                     type="date"
@@ -139,7 +139,7 @@ const EditCoupon = () => {
                             <div className="mt-1 rounded-md shadow-sm">
                                 <input
                                     id="amount"
-                                    name="amount"
+                                    name="disountamount"
                                     type="number"
                                     placeholder="Enter Discount Amount"
                                     defaultValue={disountamount}

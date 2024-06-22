@@ -1,3 +1,4 @@
+import CuponBanar from "../../UseHook/CuponBanar";
 import About from "./About/About";
 import Banar from "./Bannar/Banar";
 import Fetechard from "./Futechard/Fetechard";
@@ -12,7 +13,9 @@ const Home = () => {
         <Fetechard></Fetechard>
         <About></About>
         <TrandingProducts></TrandingProducts>
+        <CuponBanar></CuponBanar>
         <Testimonials></Testimonials>
+        
         </div>
     );
 };
